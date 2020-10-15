@@ -6,5 +6,9 @@ install:
 script:
 - python3 travis_scripts/check_tag.py || travis_terminate 1
 - docker build -t function . || travis_terminate 1
-- if [[ $TRAVIS_EVENT_TYPE == "push" && $TRAVIS_BRANCH == "master" ]] ; then python3
-  travis_scripts/push_tag.py ; fi
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: python3 travis_scripts/push_tag.py
+    on:
+      branch: master
