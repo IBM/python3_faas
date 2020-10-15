@@ -8,11 +8,11 @@ import subprocess
 if os.environ['TRAVIS_PULL_REQUEST'] == 'false':
     pass
 else:
-    def version_compare(master_version, new_version):
+    def version_compare(main_version, new_version):
         """ Checks if new version is gt old. """
-        if master_version == new_version:
+        if main_version == new_version:
             sys.exit("please bump the version!")
-        arr1 = master_version.split('.')
+        arr1 = main_version.split('.')
         arr2 = new_version.split('.')
         # Initializer for the version arrays
         i = 0
@@ -31,7 +31,7 @@ else:
     NEW_VERSION = VERSION_FILE.read().strip('\n').split('=')[1]
     VERSION_FILE.close()
 
-    MASTER_VERSION_CMD = "git show origin/master:version"
+    MASTER_VERSION_CMD = "git show origin/main:version"
     CMD = split(MASTER_VERSION_CMD)
     OLD_VERSION = subprocess.Popen(CMD, stdout=subprocess.PIPE).communicate()[
         0].decode("utf-8").strip('\n').split('=')[1]

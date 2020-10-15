@@ -13,7 +13,7 @@ G = github.Github(
 
 REPO = G.get_repo(REPO_NAME)
 
-SHA = REPO.get_commit('master').sha
+SHA = REPO.get_commit('main').sha
 
 
 VERSION_FILE = open("version", "r")
