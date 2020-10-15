@@ -11,4 +11,4 @@ deploy:
     skip_cleanup: true
     script: python3 travis_scripts/push_tag.py
     on:
-      branch: master
+      branch: main
